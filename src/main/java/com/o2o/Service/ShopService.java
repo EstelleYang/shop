@@ -43,5 +43,6 @@ public interface ShopService {
      * @return
      */
     ShopExecution getShopList(Shop shop,int pageIndex,int pageSize);
+    ShopExecution getAllShop(int offset,int pageSize);
 
 }

@@ -9,6 +9,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ShopAdminController {
     @RequestMapping(value = "/shopoperation")
     public String getShop(){
-        return "/shop/shopoperation";
+        return "/shop/chart";
+    }
+    @RequestMapping(value = "/shoplist")
+    public String getShoplist(){
+        return "/shop/shoplist";
+    }
+    @RequestMapping(value = "/shopmanage")
+    public String getShopManagementInfo(){
+        return "/shop/shopmanager";
     }
 }
+
+
+
+

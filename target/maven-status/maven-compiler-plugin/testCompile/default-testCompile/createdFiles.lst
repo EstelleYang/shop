@@ -3,4 +3,5 @@ com\o2o\Dao\ShopDaoTest.class
 com\o2o\Dao\AreaDaoTest.class
 com\o2o\Dao\ShopCategoryDaoTest.class
 com\o2o\Service\ShopServiceTest.class
+com\o2o\Dao\ProductDaoTest.class
 com\o2o\BaseTest.class

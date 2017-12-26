@@ -31,4 +31,7 @@ public interface ShopDao {
      * @return int
      */
     int queryShopCount(@Param("shopCondition")Shop shopCondition);
+    List<Shop> queryshopListNoCondition(@Param("rowIndex")int rowIndex,@Param("pageSize")int pageSize);
+    int shopCount();
+    List<Shop> queryAllShop();
 }

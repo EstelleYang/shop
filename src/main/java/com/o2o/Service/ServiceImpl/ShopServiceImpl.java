@@ -33,6 +33,7 @@ public class ShopServiceImpl implements ShopService {
             shop.setEnableStatus(0);
             shop.setLastEditTime(new Date());
             shop.setCreateTime(new Date());
+            shop.setAdvice(new ShopExecution(ShopStateEnum.CHECK).getStateInfo());
             int result = shopDao.insertShop(shop);
             if (result<=0){
                 throw new ShopOperationException("店铺创建失败");
@@ -120,6 +121,20 @@ public class ShopServiceImpl implements ShopService {
             shopExecution.setState(ShopStateEnum.INNER_ERROR.getState());
         }
 
+        return shopExecution;
+    }
+
+    @Override
+    public ShopExecution getAllShop(int offset, int pageSize) {
+        List<Shop> shopList = shopDao.queryshopListNoCondition(offset,pageSize);
+        int count = shopDao.shopCount();
+        ShopExecution shopExecution = new ShopExecution();
+        if (shopList!=null){
+            shopExecution.setCount(count);
+            shopExecution.setShopList(shopList);
+        }else{
+            shopExecution.setState(ShopStateEnum.INNER_ERROR.getState());
+        }
         return shopExecution;
     }
 

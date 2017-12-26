@@ -28,6 +28,67 @@
             <result property="name" column="name"/>
         </association>
     </resultMap>
+    <!--查询店铺列表信息-->
+    <select id="queryshopList" resultMap="shopMap">
+         SELECT s.shop_name,s.shop_addr,s.shop_desc,s.shop_img,s.phone,s.priority,s.create_time,s.last_edit_time,s.enable_status
+        ,s.advice,a.area_name,a.area_id,sa.shop_category_id,sa.shop_category_name
+        FROM tb_shop s,tb_area a,tb_shop_category sa
+        <where>
+            <if test="shopCondition.shopCategory!=null and shopCondition.shopCategory.shopCategoryId!=null">
+                and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryId}
+            </if>
+            <if test="shopCondition.area!=null and shopCondition.areaId!=null">
+                and s.area_id = #{shopCondition.area.areaId}
+            </if>
+            <if test="shopCondition.enableStatus!=null">
+                and s.enable_status = #{shopCondition.enableStatus}
+            </if>
+            <if test="shopCondition.owner!=null and shopCondition.owner.userId!=null">
+                and s.owner_id = #{shopCondition.owner.userId}
+            </if>
+            <if test="shopCondition.shopName!=null">
+                and s.shop_name LIKE '%${shopCondition.shopName}%'
+            </if>
+            AND
+            s.area_id = a.area_id
+            AND
+            s.shop_category_id = sa.shop_category_id
+        </where>
+        ORDER BY s.priority DESC
+        limit #{rowIndex},#{pageSize};
+    </select>
+    <select id="queryshopListNoCondition" parameterType="java.lang.Integer" resultMap="shopMap">
+        SELECT * from tb_shop
+        limit #{rowIndex},#{pageSize}
+    </select>
+    <select id="shopCount" resultType="int">
+        select count(*) FROM tb_shop
+    </select>
+    <!--查询符合条件的店铺总数-->
+    <select id="queryShopCount" resultType="int">
+        select count(1) FROM tb_shop s,tb_area a,tb_shop_category sa
+        <where>
+            <if test="shopCondition.shopCategory!=null and shopCondition.shopCategory.shopCategoryId!=null">
+                and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryId}
+            </if>
+            <if test="shopCondition.area!=null and shopCondition.areaId!=null">
+                and s.area_id = #{shopCondition.area.areaId}
+            </if>
+            <if test="shopCondition.enableStatus!=null">
+                and s.enable_status = #{shopCondition.enableStatus}
+            </if>
+            <if test="shopCondition.owner!=null and shopCondition.owner.userId!=null">
+                and s.owner_id = #{shopCondition.owner.userId}
+            </if>
+            <if test="shopCondition.shopName!=null">
+                and s.shop_name LIKE '%${shopCondition.shopName}%'
+            </if>
+            AND
+            s.area_id = a.area_id
+            AND
+            s.shop_category_id = sa.shop_category_id
+        </where>
+    </select>
     <!--查询店铺信息-->
     <select id="queryShopInfo" resultMap="shopMap" parameterType="java.lang.Long">
         SELECT s.shop_name,s.shop_addr,s.shop_desc,s.shop_img,s.phone,s.priority,s.create_time,s.last_edit_time,s.enable_status
@@ -36,9 +97,9 @@
         WHERE s.shop_category_id = sa.shop_category_id AND s.area_id = a.area_id AND s.shop_id = #{shopId}
     </select>
     <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopId">
-        INSERT INTO tb_shop (owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr,
+        INSERT INTO tb_shop (shop_id,owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr,
          phone, shop_img, priority, create_time, last_edit_time, enable_status, advice)
-         VALUES (#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},#{shopName},#{shopDesc},#{shopAddr},
+         VALUES (#{shopId},#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},#{shopName},#{shopDesc},#{shopAddr},
         #{phone},#{shopImg},#{priority},#{createTime},#{lastEditTime},#{enableStatus},#{advice})
     </insert>
     <update id="updateShop" parameterType="com.o2o.DO.Shop">
@@ -83,4 +144,7 @@
         </set>
         WHERE shop_id = #{shopId}
     </update>
+    <select id="queryAllShop" resultMap="shopMap">
+        SELECT * from tb_shop
+    </select>
 </mapper>

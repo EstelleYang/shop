@@ -57,6 +57,13 @@
         ORDER BY s.priority DESC
         limit #{rowIndex},#{pageSize};
     </select>
+    <select id="queryshopListNoCondition" parameterType="java.lang.Integer" resultMap="shopMap">
+        SELECT * from tb_shop
+        limit #{rowIndex},#{pageSize}
+    </select>
+    <select id="shopCount" resultType="int">
+        select count(*) FROM tb_shop
+    </select>
     <!--查询符合条件的店铺总数-->
     <select id="queryShopCount" resultType="int">
         select count(1) FROM tb_shop s,tb_area a,tb_shop_category sa
@@ -90,9 +97,9 @@
         WHERE s.shop_category_id = sa.shop_category_id AND s.area_id = a.area_id AND s.shop_id = #{shopId}
     </select>
     <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopId">
-        INSERT INTO tb_shop (owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr,
+        INSERT INTO tb_shop (shop_id,owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr,
          phone, shop_img, priority, create_time, last_edit_time, enable_status, advice)
-         VALUES (#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},#{shopName},#{shopDesc},#{shopAddr},
+         VALUES (#{shopId},#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},#{shopName},#{shopDesc},#{shopAddr},
         #{phone},#{shopImg},#{priority},#{createTime},#{lastEditTime},#{enableStatus},#{advice})
     </insert>
     <update id="updateShop" parameterType="com.o2o.DO.Shop">
@@ -137,4 +144,7 @@
         </set>
         WHERE shop_id = #{shopId}
     </update>
+    <select id="queryAllShop" resultMap="shopMap">
+        SELECT * from tb_shop
+    </select>
 </mapper>

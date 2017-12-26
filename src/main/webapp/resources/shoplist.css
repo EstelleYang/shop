@@ -1,0 +1,34 @@
+.row-shop{
+    border:1px solid #999999;
+    padding: 5rem;
+    border-bottom:none;
+}
+.row-shop:last-child{
+    border-bottom:1px solid #999999;
+}
+.shop-name{
+    white-space: nowrap;
+    overflow: scroll;
+}
+.shop-wrap{
+
+}
+.carousel-inner>.item>img{
+    min-width: 100%;
+    height: 400px;
+}
+.case img{
+    height: 100px;
+}
+.case{
+    margin-top: 20px;
+    text-align: center;
+}
+#mycarousel{
+    margin-top: 0px;
+    padding-top:0px;
+}
+#navbars{
+    margin-top: 0px;
+    padding-top: 0px;
+}

@@ -20,6 +20,8 @@ public class ShopServiceTest extends BaseTest{
     public void modifyShopInfo() throws ShopOperationException,FileNotFoundException{
         Shop shop = new Shop();
         shop.setShopId(29L);
+        shop.setEnableStatus(0);
+        //shop.getEnableStatus()
         shop.setShopName("啊哈哈哈店");
         File shopImg = new File("E:/lufei.jpg");
         InputStream inputStream = new FileInputStream(shopImg);

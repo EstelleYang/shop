@@ -19,6 +19,16 @@ public class Product {
     private Integer enableStatus;
     private ProductCategory productCategory;
     private Shop shop;
+    //批量插入产品
+    private List<Product> productList;
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     public long getProductId() {
         return productId;

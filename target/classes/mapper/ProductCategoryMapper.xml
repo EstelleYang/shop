@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.o2o.Dao.ProductDao">
+    <resultMap id="productCategoryMap" type="com.o2o.DO.ProductCategory">
+        <id column="product_category_id" property="productCategoryId" jdbcType="INTEGER"/>
+        <result column="product_category_name" property="productCategoryName" jdbcType="VARCHAR"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime"/>
+        <association property="shop" column="shop_id" javaType="com.o2o.DO.Shop">
+            <id column="shop_id" property="shopId" jdbcType="INTEGER"/>
+            <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+    <select id="queryProductCategory" resultMap="productCategoryMap">
+        SELECT product_category_name from tb_product_category
+    </select>
+
+</mapper>
