@@ -18,5 +18,6 @@ public interface ProductService {
     public List<ProductCategory> queryProductCategory(int offset, int pageSize, Shop shop);
     public Product queryProductById(int productId);
     public ProductExecution queryProductByShopName(int offset, int pageSize, Shop shop);
+    public List<Product> queryAllProduct(long shopId);
 }
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap-table/1.9.1/bootstrap-table.min.css" rel="stylesheet"/>
+    <script src="/O2O/resources/js/jquery/jquery-3.2.1.js"></script>
+    <script src="/O2O/resources/js/echarts.min.js"></script>
+    <script src="/O2O/resources/js/jquery.easyui.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+
+
+    <script src="http://cdn.bootcss.com/bootstrap-table/1.9.1/bootstrap-table.min.js"></script>
+
+    <script src="http://cdn.bootcss.com/bootstrap-table/1.9.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/O2O/resources/js/shop/chart.js"></script>
+
+</head>
+<body>
+<div id="main" style="width: 500px;height:600px;"></div>
+<div class="modal fade bs-example-modal-lg" id="modifyDetailModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="myModalLabel">查看商品信息</h5>
+            </div>
+            <form class="form-horizontal" role="form" id="customerCreditForm">
+                <div class="modal-body">
+                    <input name="queryProductInfoId" id="queryShopInfoId" hidden="true" />
+                    <table id="table_product" data-toolbar="#toolbar" data-show-columns="true" data-show-export="true" data-detail-view="false"
+                           data-pagination="true" data-id-field="id" data-page-list="[10,25,50,100]"
+                           data-show-footer="false"></table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning" data-ok="modal" onclick="javascript:exportExcel()">导出</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

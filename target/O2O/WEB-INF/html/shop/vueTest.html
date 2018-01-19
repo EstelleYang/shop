@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Bootstrap 实例</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+<div id="app-2">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        data:{message:'Hello Vue!'}
+    })
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: '页面加载于 ' + new Date().toLocaleString()
+        }
+    })
+    function Student(name){
+        this.name = name;
+    }
+    Student.prototype.hello = function () {
+        alert('Hello,'+this.name+'!');
+    };
+    var xiaoming = new Student('小明');
+    xiaoming.name;
+    xiaoming.hello();
+    alert(xiaoming.hello);
+    function Student(props){
+        this.name = props.name||'unnamed';
+    }
+    Student.prototype.hello = function () {
+        alert(this.name);
+    }
+    function PrimaryStudent(props){
+        Student.call(this,props);
+        this.grade = props.grade || 1;
+    }
+    function F(){}
+    F.prototype = Student.prototype;
+    PrimaryStudent.prototype = new F();
+    PrimaryStudent.prototype.constructor = PrimaryStudent;
+    PrimaryStudent.prototype.getGrade = function () {
+        return this.grade;
+    }
+</script>
+
+
+
+</body>

@@ -85,4 +85,9 @@ public class ProductServiceImpl implements ProductService{
         }
         return productExecution;
     }
+
+    @Override
+    public List<Product> queryAllProduct(long shopId) {
+        return productDao.queryAllProduct(shopId);
+    }
 }
