@@ -9,13 +9,27 @@
     <script src="/O2O/resources/js/jquery/jquery-3.2.1.js"></script>
     <script src="/O2O/resources/js/echarts.min.js"></script>
     <script src="/O2O/resources/js/jquery.easyui.min.js"></script>
+    <script src="/O2O/resources/js/jquery/distpicker.data.js"></script>
+    <script src="/O2O/resources/js/jquery/distpicker.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 
-
+   <!-- <script src="/O2O/resources/js/shop/city.js"></script>-->
     <script src="http://cdn.bootcss.com/bootstrap-table/1.9.1/bootstrap-table.min.js"></script>
 
     <script src="http://cdn.bootcss.com/bootstrap-table/1.9.1/locale/bootstrap-table-zh-CN.min.js"></script>
     <script src="/O2O/resources/js/shop/chart.js"></script>
+    <script src="/O2O/resources/js/shop/cityXml.js"></script>
+
+    <!--<script>
+    $("#tijiao").click(function(){
+        var province = $("#eprovinceName").find("option:selected").text();
+        var city = $("#ecityName").find("option:selected").text();
+        var district = $("#edistrictName").find("option:selected").text();
+        console.log(province);
+        console.log(city);
+        console.log(district);
+    });
+    </script>-->
 
 </head>
 <body>
@@ -45,8 +59,27 @@
     </div>
 </div>
 
+<div data-toggle="distpicker">
+    <select id="eprovinceName" data-province="浙江省" name="provinceName"></select>
+    <select id="ecityName" data-city="杭州市" name="cityName"></select>
+    <select id="edistrictName" data-district="西湖区" name="districtName"></select>
+</div>
+<input type='button'  value="提交"  id='tijiao'>
+<script>
+    $(function () {
+        //添加模式
+        WJH_Category.Init("DIV1", 0, 0, 0, true);
+
+    });
+</script>
+<div id="DIV1"></div>
+<div id="DIV2"></div>
+<select id="province"><option value="100000">--请选择省份--</option></select>
+<select id="city"><option value="100000">--请选择城市--</option></select>
+<select id="district"><option value="100000">--请选择地区--</option></select>
 
 
 
 </body>
+
 </html>

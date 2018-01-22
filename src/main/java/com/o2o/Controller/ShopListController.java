@@ -88,10 +88,10 @@ public class ShopListController {
     }
 
     @RequestMapping(value = "/export")
-    public void exportData(String queryShopInfoId, String custColumns,
+    public void exportData(Shop shop, String custColumns,
                            HttpServletResponse response, HttpServletRequest request, HttpSession session){
         List<Product> exportList = new ArrayList<>();
-        long shopId = Long.parseLong(queryShopInfoId);
+        long shopId =shop.getShopId();
         List<Product> list = productService.queryAllProduct(shopId);
         exportList.addAll(list);
         exportExcel(custColumns,response,exportList);

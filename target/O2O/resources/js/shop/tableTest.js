@@ -157,12 +157,12 @@ function initTable() {
 }
 
 //responseHandler 处理结果集
-function responseHandler(res) {
+/*function responseHandler(res) {
     $.each(res.rows, function (i, row) {
         row.state = $.inArray(row.id, selections) !== -1;
     });
     return res;
-}
+}*/
 /**
  * 获取表格行数据
  * @param tableid
@@ -173,18 +173,16 @@ function getRow(tableid, index) {
     return $("#" + tableid).bootstrapTable('getData')[index];
 }
 
-var $table = $('#table_product');
+//var $table = $('#table_product');
 
 function exportExcel() {
-    alert("sss");
-
     var data = $("#table_product").bootstrapTable("getData");
     if (data==null||data==''){
         $.alert("提示","操作数据不能为空");
         return;
     }
-    $.confirm("提示", "是否确认导出?", function() {
-       var columns = $table.bootstrapTable('getVisibleColumns');
+    //$.confirm("提示", "是否确认导出?", function() {
+       var columns = $("#table_product").bootstrapTable('getVisibleColumns');
        var map = {};
        $.each(columns,function (index,value) {
            if (value.field==''||value.field=='operation'){
@@ -196,7 +194,7 @@ function exportExcel() {
            $.alert("请选择导入的列");
            return false;
        }
-       var $exportTable = $("#customerCreditForm");
+       var $exportTable = $("form");
        var hiddenHTML = '<input type="hidden" name="custColumns"/>';
        $exportTable.append(hiddenHTML);
        $("input[name=custColumns]").val(JSON.stringify(map));
@@ -204,7 +202,7 @@ function exportExcel() {
         $exportTable.attr("action", "/O2O/shoplists/export");
         $exportTable.submit();
         $exportTable.find("input[name=custColumns]").remove();
-    });
+  //  });
 }
 // 对Date的扩展，将 Date 转化为指定格式的String
 // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
