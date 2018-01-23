@@ -50,7 +50,6 @@ window.onload = function () {
     var prov_obj = document.getElementById("province");
     var city_obj = document.getElementById("city");
     var dist_obj = document.getElementById("district");
-
     var proves = xmldom.getElementsByTagName("province");
     for (var i = 0; i < proves.length; i++) {
         addOption2(proves[i], prov_obj);
